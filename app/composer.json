@@ -1,0 +1,15 @@
+{
+    "name": "krawc/baza-wiedzy",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Wojciech Krawczyk",
+            "email": "krawczyk_wojciech@wp.pl"
+        }
+    ],
+    "require": {}
+}
