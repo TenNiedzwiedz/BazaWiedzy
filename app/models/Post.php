@@ -50,6 +50,7 @@
         'tags' => 'Tagi',
         'addedBy' => 'Dodane przez',
         'addDate' => 'Data dodania',
+        'views' => 'Wyśw.'
         ];
     }
 

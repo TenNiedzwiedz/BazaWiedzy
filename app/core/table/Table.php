@@ -8,7 +8,7 @@ class Table
   {
     $className = $data[0];
     echo "
-      <table class='table table-striped'>
+      <table class='table table-dark table-striped table-hover'>
         <thead>
           <tr>
       ";
