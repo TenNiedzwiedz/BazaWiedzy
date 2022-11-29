@@ -31,6 +31,9 @@
   $app->router->get('/addpost', [PostsController::class, 'addPost']);
   $app->router->post('/addpost', [PostsController::class, 'addPost']);
 
+  $app->router->get('/postlist', [PostsController::class, 'postList']);
+  $app->router->post('/postlist', [PostsController::class, 'postList']);
+
   $app->router->get('/users', [UsersController::class, 'usersList']);
   $app->router->get('/edituser', [UsersController::class, 'editUser']);
   $app->router->post('/edituser', [UsersController::class, 'editUser']);

@@ -6,8 +6,8 @@ class AccessControl
 {
   public static array $accessRules = [
     'guest' => [ 'login'],
-    'user' => ['main', 'logout', 'myProfile', 'userSettings', 'changePassword', 'addPost'],
-    'admin' => ['main', 'logout', 'myProfile', 'userSettings', 'changePassword', 'addPost', 'editUser', 'showChangelog']
+    'user' => ['main', 'logout', 'myProfile', 'userSettings', 'changePassword', 'addPost', 'postList'],
+    'admin' => ['main', 'logout', 'myProfile', 'userSettings', 'changePassword', 'addPost', 'postList', 'editUser', 'showChangelog']
     ];
 
   public static function checkAccess($route)
