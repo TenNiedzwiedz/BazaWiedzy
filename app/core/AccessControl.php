@@ -10,7 +10,14 @@ class AccessControl
     'admin' => ['main', 'logout', 'myProfile', 'userSettings', 'changePassword', 'addPost', 'postList', 'editUser', 'showChangelog']
     ];
 
-  public static function checkAccess($route)
+  /**
+   * Checks if current user has access for given route.
+   * 
+   * @param string $route
+   * 
+   * @return bool $result
+   */
+  public static function checkAccess(string $route)
   {
     $userRole = Application::$app->session->get('userRole') ?: 'guest';
 
