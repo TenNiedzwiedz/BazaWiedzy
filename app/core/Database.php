@@ -12,6 +12,9 @@ class Database
 
   public \PDO $pdo;
 
+  /**
+   * Establishes connection with MySQL database.
+   */
   public function __construct()
   {
     $dsn = 'mysql:host=' . $this->dbHost . ';dbname=' . $this->dbName;
@@ -20,6 +23,13 @@ class Database
     $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
   }
 
+  /**
+   * Prepares passed statement and returns a statement object.
+   * 
+   * @param string $sql
+   * 
+   * @return PDOStatement 
+   */
   public function prepare($sql)
   {
     return $this->pdo->prepare($sql);
