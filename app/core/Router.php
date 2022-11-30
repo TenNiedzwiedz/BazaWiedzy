@@ -16,16 +16,34 @@ class Router
     $this->view = $view;
   }
 
-  public function get($path, $callback)
+  /**
+   * Adds to $routes array new valid route for GET requests.
+   * 
+   * @param string $path
+   * @param mixed $callback
+   */
+  public function get(string $path, $callback)
   {
     $this->routes['get'][$path] = $callback;
   }
 
+  /**
+   * Adds to $routes array new valid route for POST requests.
+   * 
+   * @param string $path
+   * @param mixed $callback
+   */
   public function post($path, $callback)
   {
     $this->routes['post'][$path] = $callback;
   }
 
+  /**
+   * Checks if for given path and method exists valid route in $routes array.
+   * Returns result of given callback or throw exception.
+   * 
+   * @return string Result of given callback
+   */
   public function resolve()
   {
     $path = $this->request->getPath();
