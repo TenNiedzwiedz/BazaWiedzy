@@ -8,6 +8,7 @@ use app\core\Request;
 use app\models\User;
 use app\models\RegisterUser;
 use app\models\ChangePassword;
+use app\models\Post;
 
 use app\core\table\Table;
 
@@ -44,8 +45,14 @@ class UsersController extends Controller
 
     $user = User::getCurrentUser();
 
+    $postList = Post::findAll(["addedBy" => $user->id]);
+
+    $postList = array_reverse($postList);
+    $postList = array_slice($postList, 0, 5);
+
     $params = [
-      'user' => $user
+      'user' => $user,
+      'postList' => $postList
     ];
 
     return $this->render('myProfile', $params);
