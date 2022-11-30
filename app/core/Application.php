@@ -34,6 +34,12 @@
       $this->router = new Router($this->request, $this->response, $this->view);
     }
 
+    /**
+     * Checks if current user isn't logged in and requested path isn't /login.
+     * If both are true, then user is redirected to login page. 
+     * 
+     * @return void
+     */
     public function isGuest()
     {
       if (!$this->session->get('userID') && $this->request->getPath() != '/login')
@@ -43,6 +49,12 @@
       }
     }
 
+    /**
+     * Tries to resolve user request.
+     * On exception, renders error view.
+     * 
+     * @return void
+     */
     public function run()
     {
       try {
