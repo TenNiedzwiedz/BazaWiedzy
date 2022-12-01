@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\ModelWrapper;
+use app\core\exceptions\DataInvalid;
 use app\models\User;
 use app\models\Post;
 
@@ -19,6 +21,20 @@ class PostsController extends Controller
 
     if($request->isPost())
     {
+      $post = new ModelWrapper(Post::class);
+      $body = $request->getBody();
+      try {
+        $post->save($body);
+      } catch (DataInvalid $e) {
+        $params = [
+          'user' => $user,
+          'post' => $post->model
+        ];
+
+        return $this->return400('addPost', $params);
+      }
+
+      /*
       $body = $request->getBody();
       $post->loadData($body);
 
@@ -27,7 +43,7 @@ class PostsController extends Controller
         Application::$app->session->setFlash('success', 'Artykuł został dodany');
         Application::$app->response->redirect('/');
         exit;
-      }
+      } */
     }
 
     $params = [

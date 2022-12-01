@@ -17,4 +17,10 @@ class Controller
       return Application::$app->view->renderView($view, $params);
     }
 
+    public function return400(string $view, array $params = [])
+    {
+
+      return $this->render($view, $params);
+    }
+
 }
