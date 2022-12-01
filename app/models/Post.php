@@ -54,7 +54,7 @@
         ];
     }
 
-    public function save()
+    public function save() : bool
     {
       $user = User::getCurrentUser();
       $this->addedBy = $user->id;
@@ -64,7 +64,7 @@
       return parent::save();
     }
 
-    public function update($where, $body=[])
+    public function update($where, $body=[]) : bool
     {
       $postCopy = clone $this;
       $this->loadData($body);

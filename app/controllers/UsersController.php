@@ -15,7 +15,7 @@ use app\core\table\Table;
 class UsersController extends Controller
 {
 
-  public function registerUser(Request $request)
+  /*public function registerUser(Request $request)
   {
     $user = new RegisterUser();
 
@@ -38,7 +38,7 @@ class UsersController extends Controller
       ];
 
     return $this->render('registerForm', $params);
-  }
+  } */
 
   public function myProfile()
   {

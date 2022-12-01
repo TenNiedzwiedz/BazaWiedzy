@@ -67,7 +67,7 @@
       }
     }
 
-    public function update($where, $body=[])
+    public function update(array $where, array $body = []) : bool
     {
       $userCopy = clone $this;
       $this->loadData($body);
