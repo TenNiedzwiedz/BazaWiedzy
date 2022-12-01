@@ -33,6 +33,12 @@ class AccessControl
       Application::$app->layout = $userRole;
     }
 
+    if(!$result && $userRole == 'guest')
+    {
+      Response::redirect('/login');
+      exit;
+    }
+
     return $result;
   }
 }
