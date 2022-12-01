@@ -10,7 +10,7 @@ class Request
    * 
    * @return string Part of URL after domain, before '?'
    */
-  public function getPath()
+  public function getPath() : string
   {
     $path = $_SERVER['REQUEST_URI'] ?? '/';
     $position = strpos($path, '?');
@@ -25,7 +25,7 @@ class Request
    * 
    * @return string
    */
-  public function getMethod()
+  public function getMethod() : string
   {
     return strtolower($_SERVER['REQUEST_METHOD']);
   }
@@ -35,7 +35,7 @@ class Request
    * 
    * @return string Part of URL after '?'
    */
-  public function getParams()
+  public function getParams() : string
   {
     $path = $_SERVER['REQUEST_URI'] ?? '/';
     $position = strpos($path, '?');
@@ -50,7 +50,7 @@ class Request
    * 
    * @return bool True if method is GET
    */
-  public function isGet()
+  public function isGet() : bool
   {
     return $this->getMethod() === 'get';
   }
@@ -60,7 +60,7 @@ class Request
    * 
    * @return bool True if method is POST
    */
-  public function isPost()
+  public function isPost() : bool
   {
     return $this->getMethod() === 'post';
   }
@@ -70,7 +70,7 @@ class Request
    * 
    * @return array $body
    */
-  public function getBody()
+  public function getBody() : array
   {
     $body = [];
 

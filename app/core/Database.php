@@ -1,6 +1,8 @@
 <?php
 namespace app\core;
 
+use PDOStatement;
+
 require_once 'Config.php';
 
 class Database
@@ -30,7 +32,7 @@ class Database
    * 
    * @return PDOStatement 
    */
-  public function prepare($sql)
+  public function prepare($sql) : PDOStatement
   {
     return $this->pdo->prepare($sql);
   }

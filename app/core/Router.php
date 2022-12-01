@@ -44,7 +44,7 @@ class Router
    * 
    * @return string Result of given callback
    */
-  public function resolve()
+  public function resolve() : string
   {
     $path = $this->request->getPath();
     $method = $this->request->getMethod();

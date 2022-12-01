@@ -17,7 +17,7 @@ class AccessControl
    * 
    * @return bool $result
    */
-  public static function checkAccess($route)
+  public static function checkAccess($route) : bool
   {
     $userRole = Application::$app->session->get('userRole') ?: 'guest';
 
