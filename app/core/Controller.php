@@ -19,7 +19,13 @@ class Controller
 
     public function return400(string $view, array $params = [])
     {
+      Application::$app->response->setStatusCode('400');
+      return $this->render($view, $params);
+    }
 
+    public function return401(string $view, array $params = [])
+    {
+      Application::$app->response->setStatusCode('401');
       return $this->render($view, $params);
     }
 

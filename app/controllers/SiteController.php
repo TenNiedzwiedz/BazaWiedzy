@@ -5,20 +5,26 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\User;
+use app\models\user\CurrentUser;
 
 class SiteController extends Controller
 {
+  public CurrentUser $currentUser;
 
-  public function main()
+  public array $params;
+
+  public function __construct()
   {
-    $user = User::getCurrentUser();
+    $this->currentUser = new CurrentUser();
 
-    $params = [
-      'user' => $user
-    ];
-
-    return $this->render('main', $params);
+    $this->params['currentUser'] = $this->currentUser;
   }
 
+  /**
+   * Renders main view.
+   */
+  public function main()
+  {
+    return $this->render('main', $this->params);
+  }
 }

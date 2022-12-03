@@ -16,7 +16,7 @@ class Field
   public Model $model;
   public string $attribute;
 
-  public function __construct(Model $model, string $attribute)
+  public function __construct(Model $model, string $attribute) //TODO Przenieść errorLog z modelu do params
   {
     $this->type = self::TYPE_TEXT;
     $this->model = $model;

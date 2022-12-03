@@ -4,10 +4,23 @@ namespace app\core;
 
 use app\core\Application;
 
-abstract class DbModel extends Model
+abstract class DbModel
 {
 
   public string $id;
+
+  public function loadObjectData(Model $model)
+  {
+    $modelFields = get_object_vars($model);
+
+    foreach($modelFields as $key => $value)
+    {
+      if(property_exists($this, $key))
+      {
+        $this->{$key} = $value;
+      }
+    }
+  }
 
   /**
    * Saves object in DB based on fields defined in getDbFields().
@@ -66,7 +79,7 @@ abstract class DbModel extends Model
   public static function findOne($where)
   {
     $tableName = static::tableName();
-
+    
     $attributes = array_keys($where);
     $sql = implode(" AND ", array_map(fn ($attr) => "$attr = :$attr", $attributes));
     $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
@@ -75,7 +88,7 @@ abstract class DbModel extends Model
     }
 
     $statement->execute();
-
+ 
     return $statement->fetchObject(static::class);
   }
 

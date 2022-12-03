@@ -2,6 +2,8 @@
 
 namespace app\core;
 
+use app\core\exceptions\DataInvalid;
+
 class Validator
 {
     public function validate(Model $model, ErrorLog $errorLog)
@@ -43,5 +45,28 @@ class Validator
               }
             }
         }
+        if(!empty($errorLog->errors))
+        {
+            $model->errors = $errorLog->errors;
+            throw new DataInvalid("Data faild validation");
+        }
     }
+
+    /**
+     * Checks if user inputed password from model is valid compare to password from DB.
+     * 
+     * @param Model $model
+     * @param DbModel $dbModel
+     * @param ErrorLog $errorLog 
+     */
+    public function validatePassword(Model $model, DbModel $dbModel, ErrorLog $errorLog)
+    {
+        if(!password_verify($model->password, $dbModel->password))
+        {
+            $errorLog->addError('password', 'Obecne hasło jest nieprawidłowe');
+            $model->errors = $errorLog->errors;
+            throw new DataInvalid("Current password is incorect");
+        }
+    }
+    
 }

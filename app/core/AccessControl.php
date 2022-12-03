@@ -7,7 +7,7 @@ class AccessControl
   public static array $accessRules = [
     'guest' => [ 'login'],
     'user' => ['main', 'logout', 'myProfile', 'userSettings', 'changePassword', 'addPost', 'postList'],
-    'admin' => ['main', 'logout', 'myProfile', 'userSettings', 'changePassword', 'addPost', 'postList', 'editUser', 'showChangelog']
+    'admin' => ['main', 'logout', 'myProfile', 'userSettings', 'changePassword', 'addPost', 'postList', 'editUser', 'usersList', 'showChangelog']
     ];
 
   /**

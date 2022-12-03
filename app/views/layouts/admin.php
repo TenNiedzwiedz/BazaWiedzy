@@ -37,7 +37,7 @@
         <div class="col text-end">
 
           <div class="dropdown d-inline-flex align-items-center">
-            <span class="me-3"><?= $user->getUsername() ?></span><a href="#" class="link-warning h4 m-0" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
+            <span class="me-3"><?= $currentUser->getUsername() ?></span><a href="#" class="link-warning h4 m-0" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
             <ul class="dropdown-menu dropdown-menu-dark">
               <li><a class="dropdown-item" href="/myprofile">Mój profil</a></li>
               <li><a class="dropdown-item" href="/settings">Ustawienia</a></li>

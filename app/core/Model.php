@@ -20,6 +20,19 @@ abstract class Model
     }
   }
 
+  public function loadDbObjectData(DbModel $dbModel)
+  {
+    $dbModelFields = get_object_vars($dbModel);
+
+    foreach($dbModelFields as $key => $value)
+    {
+      if(property_exists($this, $key))
+      {
+        $this->{$key} = $value;
+      }
+    }
+  }
+
   abstract public function rules(): array;
 
   public function labels(): array

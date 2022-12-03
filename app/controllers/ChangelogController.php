@@ -9,7 +9,7 @@ use app\models\Changelog;
 
 class ChangelogController extends Controller
 {
-  public function showChangelog(Request $request)
+  public function showChangelog(Request $request) //TODO redo function
   {
     $body = $request->getBody();
 

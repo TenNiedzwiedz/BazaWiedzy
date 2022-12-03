@@ -1,11 +1,11 @@
 <?php
 
-  namespace app\models;
+  namespace app\models\user;
 
   use app\core\Application;
-  use app\core\DbModel;
+  use app\core\Model;
 
-  class User extends DbModel{
+  class User extends Model{
 
     public string $id;
     public string $login = '';
@@ -39,14 +39,6 @@
         ];
     }
 
-    public static function getCurrentUser()
-    {
-      $id = Application::$app->session->get('userID');
-      $user = new User();
-      $user = $user::findOne(['id' => $id]);
-      return $user;
-    }
-
     public function getUsername()
     {
       return $this->firstname.' '.$this->lastname;
@@ -66,32 +58,5 @@
           break;
       }
     }
-
-    public function update(array $where, array $body = []) : bool
-    {
-      $userCopy = clone $this;
-      $this->loadData($body);
-      if($result = ($this->validate() && parent::update($where)))
-      {
-        $this->changelog($userCopy);
-      }
-      return $result;
-    }
-
-    public static function tableName()
-    {
-      return 'users';
-    }
-
-    public function getDbFields()
-    {
-      return ['login', 'password', 'userRole', 'firstname', 'lastname', 'email'];
-    }
-
-    public function getChangelogFields()
-    {
-      return ['login', 'userRole', 'firstname', 'lastname', 'email'];
-    }
-
 
   }
