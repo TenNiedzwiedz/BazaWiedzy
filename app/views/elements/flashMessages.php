@@ -24,7 +24,6 @@
   {
     const flashMessageToast = document.getElementById('FlashMessage')
     if (flashMessageToast) {
-      console.log('trigger is');
       const toast = new bootstrap.Toast(flashMessageToast);
 
       toast.show()
