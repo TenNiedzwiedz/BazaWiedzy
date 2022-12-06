@@ -22,9 +22,10 @@ class Select
     $selectField = sprintf('
         <div class="mb-3">
           <label  class="form-label">%s</label>
-          <select name="%s" class="form-select">
+          <select name="%s[]" id="%s" class="form-select" data-allow-clear="true" multiple>
       ',
         $this->model->getLabel($this->attribute),
+        $this->attribute,
         $this->attribute
     );
 
@@ -33,13 +34,13 @@ class Select
       $selectField .= sprintf('
           <option %s value="%s">%s</option>
         ',
-          ($this->model->{$this->attribute} == $value) ? 'selected' : '',
+          ($this->model->{$this->attribute} == $value) ? 'selected="selected"' : '',
           $value,
           $option
       );
     }
 
-    $selectField .= '</select></div>';
+    $selectField .= '</select><div class="invalid-feedback">Wybierz poprawną wartość.</div></div>';
     return $selectField;
   }
 

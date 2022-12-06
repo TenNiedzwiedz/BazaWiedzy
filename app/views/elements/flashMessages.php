@@ -22,7 +22,6 @@
 <script>
   function showFlashMessage()
   {
-    console.log('function on');
     const flashMessageToast = document.getElementById('FlashMessage')
     if (flashMessageToast) {
       console.log('trigger is');
