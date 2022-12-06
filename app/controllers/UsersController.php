@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Application;
+use app\core\ChangeLog;
 use app\core\Controller;
 use app\core\Request;
 use app\core\ErrorLog;
@@ -25,6 +26,7 @@ class UsersController extends Controller
   public CurrentUser $currentUser;
   public ErrorLog $errorLog;
   public Validator $validator;
+  public ChangeLog $changeLog;
 
   public array $params;
 
@@ -33,6 +35,7 @@ class UsersController extends Controller
     $this->currentUser = new CurrentUser();
     $this->errorLog = new ErrorLog();
     $this->validator = new Validator();
+    $this->changeLog = new ChangeLog();
 
     $this->user = new User();
     $this->user->loadDbObjectData(DbUser::findOne(['id' => $this->currentUser->id]));
@@ -55,9 +58,11 @@ class UsersController extends Controller
       $post = new Post();
       $post->loadDbObjectData($dbPost);
       $postList[] = $post;
-    }
 
+      $tagList[$post->id] = json_decode($dbPost->tags); //TODO Dorobić ograniczenie liczby tagów
+    }
     $this->params['postList'] = $postList;
+    $this->params['tagList'] = $tagList;
 
     return $this->render('myProfile', $this->params);
   }
@@ -151,8 +156,11 @@ class UsersController extends Controller
         return $this->return400('userSettings', $this->params);
       }
 
-      $dbUser = new DbUser();
+      $dbUser = DbUser::findOne(['id' => $this->currentUser->id]);
+      $this->changeLog->logOriginalObject($dbUser);
+
       $dbUser->loadObjectData($this->user);
+      $this->changeLog->pushChanges($dbUser, $this->currentUser->id);
 
       if ($dbUser->update(['id' => $this->user->id])) {
         Application::$app->session->setFlash('success', 'Zmiany zostały zapisane');

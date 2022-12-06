@@ -5,22 +5,40 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
-use app\models\Changelog;
+use app\models\changelog\Changelog;
+use app\models\changelog\DbChangelog;
+use app\models\user\CurrentUser;
 
 class ChangelogController extends Controller
 {
-  public function showChangelog(Request $request) //TODO redo function
+  public CurrentUser $currentUser;
+
+  public array $params =[];
+
+  public function __construct()
+  {
+    $this->currentUser = new CurrentUser();
+
+    $this->params['currentUser'] = $this->currentUser;
+  }
+
+  public function showChangelog(Request $request)
   {
     $body = $request->getBody();
 
     if(isset($body['object']) && isset($body['id']))
     {
-      $changelogList = Changelog::findAll(['objectID' => $body['id']], $body['object'].'changes');
+      $dbChangelogList = DbChangelog::findAll(['objectID' => $body['id']], $body['object'].'changes');
 
-      $params = [
-        'changelogList' => $changelogList
-      ];
-      return $this->render('changelog', $params);
+      foreach ($dbChangelogList as $dbChangelog) {
+        $changelog = new Changelog();
+        $changelog->loadDbObjectData($dbChangelog);
+        $changelogList[] = $changelog;
+      }
+      
+      $this->params['changelogList'] = $changelogList ?? [];
+
+      return $this->render('changelog', $this->params);
     } else {
       Application::$app->response->redirect('/');
     }
