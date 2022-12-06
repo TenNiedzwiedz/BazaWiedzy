@@ -50,7 +50,7 @@ abstract class DbModel
    * 
    * @return bool
    */
-  public function update(array $where, array $body = []): bool
+  public function update(array $where): bool //usunięte array $body = []
   {
     $tableName = $this->tableName();
     $attributes = $this->getDbFields();

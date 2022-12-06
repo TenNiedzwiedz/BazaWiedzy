@@ -123,6 +123,9 @@ class PostsController extends Controller
     return $this->render('editPost', $this->params);
   }
 
+  /**
+   * Render showPost view for given id.
+   */
   public function showPost(Request $request)
   {
     $body = $request->getBody();
@@ -133,7 +136,11 @@ class PostsController extends Controller
       Application::$app->response->redirect('/postlist');
       exit;
     }
-    $this->post->loadDbObjectData(DbPost::findOne(['id' => $body['id']]));
+
+    $dbPost = DbPost::findOne(['id' => $body['id']]);
+    $dbPost->views++; 
+    $this->post->loadDbObjectData($dbPost);
+    $dbPost->update(['id' => $body['id']]);
 
     return $this->render('showPost', $this->params);
   }

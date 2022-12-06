@@ -47,7 +47,7 @@ class DbPost extends DbModel
 
   public function getDbFields()
   {
-    return [ 'title', 'remarks', 'content', 'tags', 'addedBy', 'addDate'];
+    return [ 'title', 'remarks', 'content', 'tags', 'addedBy', 'addDate', 'views'];
   }
 
   public function getChangelogFields()
