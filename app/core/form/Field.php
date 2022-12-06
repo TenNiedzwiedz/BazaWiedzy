@@ -11,6 +11,7 @@ class Field
   public const TYPE_PASSWORD = 'password';
   public const TYPE_NUMBER = 'number';
   public const TYPE_HIDDEN = 'hidden';
+  public const TYPE_CHECKSWITCH = 'checkswitch';
 
   public string $type;
   public Model $model;
@@ -53,6 +54,18 @@ class Field
           $this->model->getFirstError($this->attribute)
         );
         break;
+      case self::TYPE_CHECKSWITCH:
+        return sprintf('
+          <div class="mb-3 form-check form-switch">
+            <label class="form-check-label">%s</label>
+            <input class="form-check-input" type="checkbox" name="%s" role="switch" value="true" %s>
+          </div>
+        ',
+          $this->model->getLabel($this->attribute),
+          $this->attribute,
+          ($this->model->{$this->attribute} == true) ? 'checked' : ''
+        );
+        break;
       default:
         return sprintf('
           <div class="mb-3">
@@ -89,6 +102,12 @@ class Field
   public function textareaField()
   {
     $this->type = self::TYPE_TEXTAREA;
+    return $this;
+  }
+
+  public function checkSwitchField()
+  {
+    $this->type = self::TYPE_CHECKSWITCH;
     return $this;
   }
 

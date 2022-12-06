@@ -38,10 +38,14 @@
       <div class="card-header h3 text-center">Ostatnio dodane wpisy</div>
       <div class="card-body">
         <?php
-          foreach($postList as $post)
+          foreach($postList as $post) //TODO product pill
           {
-            echo '<h5 class="card-title">'.$post->title.'<span class="badge rounded-pill bg-primary ms-3">e-Sekretariat</span></h5>';
-            echo '<p class="card-text post-body">'.$post->content.'</p><hr>';
+            echo '<h5 class="card-title">'.$post->title.'</h5>';
+            echo '<p class="card-text post-body mb-1">'.$post->content.'</p>';
+            foreach($tagList[$post->id] as $tag) {
+              echo '<span class="badge rounded-pill bg-primary me-1">'.$tag->value.'</span>';
+            }
+            echo '<hr>';
           }
         ?>
       </div>

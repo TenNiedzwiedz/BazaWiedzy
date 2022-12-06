@@ -4,15 +4,13 @@ namespace app\models\post;
 
 use app\core\Application;
 use app\core\DbModel;
+use app\core\Model;
 use app\models\user\CurrentUser;
 
 class DbPost extends DbModel
 {
 
   public string $id;
-  public int $productID;
-  public int $categoryID;
-  public int $subcategoryID;
   public string $title;
   public string $remarks;
   public string $content;
@@ -26,6 +24,11 @@ class DbPost extends DbModel
   public string $verifiedDate;
   public int $verifiedBy;
 
+  public function loadObjectData(Model $model)
+  {
+    parent::loadObjectData($model);
+    $this->tags = str_replace('&#34;', '"', $this->tags);
+  }
 
   public function save(): bool
   {
@@ -37,18 +40,6 @@ class DbPost extends DbModel
     return parent::save();
   }
 
-  // public function update($where, $body=[]) : bool
-  // {
-  //   $postCopy = clone $this;
-  //   $this->loadData($body);
-
-  //   if($result = ($this->validate() && parent::update($where)))
-  //   {
-  //     $this->changelog($postCopy);
-  //   }
-  //   return $result;
-  // }
-
   public static function tableName()
   {
     return 'posts';
@@ -56,11 +47,11 @@ class DbPost extends DbModel
 
   public function getDbFields()
   {
-    return ['productID', 'categoryID', 'subcategoryID', 'title', 'remarks', 'content', 'tags', 'addedBy', 'addDate'];
+    return [ 'title', 'remarks', 'content', 'tags', 'addedBy', 'addDate'];
   }
 
   public function getChangelogFields()
   {
-    return ['productID', 'categoryID', 'subcategoryID', 'title', 'remarks', 'content', 'tags'];
+    return ['title', 'remarks', 'content', 'tags'];
   }
 }

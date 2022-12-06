@@ -6,7 +6,8 @@
 
   use app\Controllers\SiteController;
   use app\Controllers\AuthController;
-  use app\Controllers\UsersController;
+use app\controllers\TagsController;
+use app\Controllers\UsersController;
   use app\Controllers\ChangelogController;
   use app\Controllers\PostsController;
 
@@ -28,8 +29,17 @@
   //$app->router->get('/changepassword', [UsersController::class, 'changePassword']);
   $app->router->post('/changepassword', [UsersController::class, 'changePassword']);
 
+  $app->router->get('/addtag', [TagsController::class, 'addTag']);
+  $app->router->post('/addtag', [TagsController::class, 'addTag']);
+  $app->router->get('/edittag', [TagsController::class, 'editTag']);
+  $app->router->post('/edittag', [TagsController::class, 'editTag']);
+  $app->router->get('/tags', [TagsController::class, 'showTags']);
+
   $app->router->get('/addpost', [PostsController::class, 'addPost']);
   $app->router->post('/addpost', [PostsController::class, 'addPost']);
+  $app->router->get('/editpost', [PostsController::class, 'editPost']);
+  $app->router->post('/editpost', [PostsController::class, 'editPost']);
+  $app->router->get('/post', [PostsController::class, 'showPost']);
 
   $app->router->get('/postlist', [PostsController::class, 'postList']);
   $app->router->post('/postlist', [PostsController::class, 'postList']);

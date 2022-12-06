@@ -10,6 +10,7 @@
         <?php
           if($postList) {
             Table::table($postList, ['id', 'title', 'views']);
+            Table::tableClickable('/post');
           } else {
             echo '<h4>Brak wpisów dla wybranego produktu</h4>';
           }

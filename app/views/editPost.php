@@ -20,17 +20,18 @@ use app\core\Application;
 <?php include_once  Application::$ROOT_DIR."/views/elements/tagifyRepo.php"; ?>  
   <div class="col-8">
     <div class="card text-bg-dark">
-      <div class="card-header h3 text-center">Dodawanie nowego artykułu</div>
+      <div class="card-header h3 text-center">Edycja artykułu</div>
       <div class="card-body">
         <h5 class="card-title text-center"></h5>
         <p class="card-text">
-        <?php $form = \app\core\form\Form::begin('/addpost', "post"); ?>
+        <?php $form = \app\core\form\Form::begin('/editpost', "post"); ?>
+          <?= $form->field($post, 'id')->hiddenField(); ?>
           <?= $form->field($post, 'title'); ?>
           <?= $form->field($post, 'remarks')->textareaField(); ?>
           <?= $form->field($post, 'content')->textareaField(); ?>
           <?= $form->field($post, 'tags'); ?>
             <div class="text-center">
-            <button type="submit" class="btn btn-primary">Dodaj artykuł</button>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
           </div>
         <?= \app\core\form\Form::end(); ?>
         </p>

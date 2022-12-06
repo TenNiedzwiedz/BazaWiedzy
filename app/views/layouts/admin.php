@@ -69,6 +69,10 @@
                   <a href="#" class="nav-link">Projekt Tarnobrzeg</a>
                   <a href="#" class="nav-link">Projekt Olsztyn</a>
               </div>
+              <hr>
+              <div class="h4">AdminPanel</div>
+              <a class="nav-link" href="/tags">Lista tagów</a>
+              <a class="nav-link" href="#">Artykuły do zatwierdzenia</a>
             </div>
           </div>
           <div id="sideNavbarFooter" class="p-3 border-top text-center fw-light">
