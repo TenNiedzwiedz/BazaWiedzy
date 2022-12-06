@@ -1,7 +1,7 @@
 <div class="h4 row">
   <div class="col">Produkty</div>
   <div class="col text-end">
-    <a class="link-warning" href="#" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Ulubione"><i class="bi bi-heart-fill"></i></a>
+    <a class="link-warning" href="/favourites" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Ulubione"><i class="bi bi-heart-fill"></i></a>
     <a class="link-warning" href="/addpost" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Dodaj wpis"><i class="bi bi-plus-circle-fill"></i></a>
   </div>
 </div>

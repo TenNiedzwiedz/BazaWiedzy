@@ -9,7 +9,8 @@
   use app\controllers\TagsController;
   use app\controllers\UsersController;
   use app\controllers\ChangelogController;
-  use app\controllers\PostsController;
+use app\controllers\FavouritesController;
+use app\controllers\PostsController;
 
   $app = new Application(dirname(__DIR__).'/app');
 
@@ -43,6 +44,8 @@
 
   $app->router->get('/postlist', [PostsController::class, 'postList']);
   $app->router->post('/postlist', [PostsController::class, 'postList']);
+
+  $app->router->get('/favourites', [FavouritesController::class, 'showFavourites']);
 
   $app->router->get('/users', [UsersController::class, 'usersList']);
   //$app->router->get('/edituser', [UsersController::class, 'editUser']);
