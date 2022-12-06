@@ -39,7 +39,7 @@ use app\core\Application;
       <div class="card-body">
         <div class="text-end">
           <a href="/editpost?id=<?= $post->id ?>" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edytuj"><i class="bi bi-pencil-square"></i></a>
-          <a href="/changelog?object=post&id=<?= $post->id ?>" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Historia modyfikacji"><i class="bi bi-clock-history"></i></a>
+          <a href="/changelog?object=posts&id=<?= $post->id ?>" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Historia modyfikacji"><i class="bi bi-clock-history"></i></a>
         </div>
       </div>
     </div>

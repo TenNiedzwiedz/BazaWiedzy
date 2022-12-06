@@ -4,12 +4,12 @@
 
   use app\core\Application;
 
-  use app\Controllers\SiteController;
-  use app\Controllers\AuthController;
-use app\controllers\TagsController;
-use app\Controllers\UsersController;
-  use app\Controllers\ChangelogController;
-  use app\Controllers\PostsController;
+  use app\controllers\SiteController;
+  use app\controllers\AuthController;
+  use app\controllers\TagsController;
+  use app\controllers\UsersController;
+  use app\controllers\ChangelogController;
+  use app\controllers\PostsController;
 
   $app = new Application(dirname(__DIR__).'/app');
 
@@ -51,5 +51,3 @@ use app\Controllers\UsersController;
   $app->router->get('/changelog', [ChangelogController::class, 'showChangelog']);
 
   $app->run();
-
-?>

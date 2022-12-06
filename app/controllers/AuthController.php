@@ -9,7 +9,7 @@ use app\core\exceptions\DataInvalid;
 use app\core\exceptions\InvalidUser;
 use app\core\Request;
 use app\core\Validator;
-use app\models\user\loginform\LoginForm;
+use app\models\user\loginForm\LoginForm;
 use app\models\user\loginForm\DbLoginForm;
 use app\models\user\DbUser;
 
