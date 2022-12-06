@@ -10,17 +10,17 @@
         <hr>
         <h5 class="card-title text-center">Dane konta</h5>
         <p class="card-text">
-          Nazwa: <?= $user->getUsername() ?></br>
-          Login: <?= $user->login ?></br>
-          Email: <?= $user->email ?></br>
-          Rola: <?= $user->getUserRole() ?>
+          <small>Nazwa: </small><?= $user->getUsername() ?></br>
+          <small>Login: </small><?= $user->login ?></br>
+          <small>Email: </small><?= $user->email ?></br>
+          <small>Rola: </small><?= $user->getUserRole() ?>
         </p>
         <hr>
         <h5 class="card-title text-center">Statystyki konta</h5>
         <div class="row d-flex justify-content-evenly mb-3 text-center">
           <div class="col-4 border rounded border-secondary text-bg-light">
             <i class="bi bi-pencil-square h2 text-primary"></i>
-            <h2>15</h2>
+            <h2><?= $addedPosts ?></h2>
             <p style="font-size: 0.75rem;">Dodanych wpisów</p>
           </div>
           <div class="col-4 border rounded border-secondary text-bg-light">
@@ -41,7 +41,7 @@
           foreach($postList as $post)
           {
             echo '<a href="/post?id='.$post->id.'"class="text-reset text-decoration-none"><h5 class="card-title">'.$post->title.'</h5></a>';
-            echo '<p class="card-text post-body mb-1">'.$post->content.'</p>';
+            echo '<p class="card-text post-body mb-1 ms-2"><em>'.$post->content.'</em></p>';
             foreach($tagList[$post->id] as $tag) {
               echo '<span class="badge rounded-pill bg-primary me-1">'.$tag->value.'</span>';
             }

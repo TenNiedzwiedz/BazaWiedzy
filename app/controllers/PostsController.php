@@ -143,6 +143,8 @@ class PostsController extends Controller
     $this->post->loadDbObjectData($dbPost);
     $dbPost->update(['id' => $body['id']]);
 
+    $this->post->content = str_replace("\n", "</br>", $this->post->content);
+
     $isFav = (DbFavourite::findOne(['userID' => $this->currentUser->id, 'postID' => $dbPost->id])) ? true : false;
     $this->params['isFav'] = $isFav;
 
