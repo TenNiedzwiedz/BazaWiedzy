@@ -14,7 +14,6 @@ use app\core\Application;
 
 </style>
 
-
 <div class="row d-flex justify-content-evenly">
 <?php include_once  Application::$ROOT_DIR."/views/elements/tagifyRepo.php"; ?>  
   <div class="col-8">
@@ -38,6 +37,11 @@ use app\core\Application;
       </div>
       <div class="card-body">
         <div class="text-end">
+          <span id="favAddBtn" class="<?= ($isFav) ? 'd-none' : '' ?>">
+            <button onclick="addFav(<?= $post->id ?>)" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Dodaj do ulubionych"><i class="bi bi-heart"></i></button>
+          </span>
+          <span id="favRemoveBtn" class="<?= ($isFav) ? '' : 'd-none' ?>">
+          <button onclick="removeFav(<?= $post->id ?>)" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Usuń z ulubionych"><i class="bi bi-heartbreak"></i></button>          </span>
           <a href="/editpost?id=<?= $post->id ?>" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edytuj"><i class="bi bi-pencil-square"></i></a>
           <a href="/changelog?object=posts&id=<?= $post->id ?>" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Historia modyfikacji"><i class="bi bi-clock-history"></i></a>
         </div>
@@ -45,8 +49,40 @@ use app\core\Application;
     </div>
   </div>
   <script>
+    //Tagify init
     var input = document.querySelector('input[name=tags]');
 
     var tagify = new Tagify(input)
+  </script>
+
+  <script>
+    //Favourite AJAX //TODO Add flashMessage
+    function addFav(id) {
+      var xmlhttp=new XMLHttpRequest();
+      xmlhttp.onreadystatechange=function() {
+        if (this.readyState==4 && this.status==200) {
+          document.getElementById("favAddBtn").classList.add('d-none');
+          document.getElementById("favRemoveBtn").classList.remove('d-none');
+
+          console.log(this.responseText);
+        }
+      }
+      xmlhttp.open("POST","addfav",true);
+      xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xmlhttp.send('id='+id);
+    }
+    function removeFav(id) {
+      var xmlhttp=new XMLHttpRequest();
+      xmlhttp.onreadystatechange=function() {
+        if (this.readyState==4 && this.status==200) {
+          document.getElementById("favRemoveBtn").classList.add('d-none');
+          document.getElementById("favAddBtn").classList.remove('d-none');
+          console.log(this.responseText);
+        }
+      }
+      xmlhttp.open("POST","removefav",true);
+      xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xmlhttp.send('id='+id);
+    }
   </script>
 </div>

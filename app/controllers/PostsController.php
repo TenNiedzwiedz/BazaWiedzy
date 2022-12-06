@@ -9,6 +9,7 @@ use app\core\Request;
 use app\core\ErrorLog;
 use app\core\Validator;
 use app\core\exceptions\DataInvalid;
+use app\models\favourites\DbFavourite;
 use app\models\user\CurrentUser;
 use app\models\post\Post;
 use app\models\post\DbPost;
@@ -141,6 +142,9 @@ class PostsController extends Controller
     $dbPost->views++; 
     $this->post->loadDbObjectData($dbPost);
     $dbPost->update(['id' => $body['id']]);
+
+    $isFav = (DbFavourite::findOne(['userID' => $this->currentUser->id, 'postID' => $dbPost->id])) ? true : false;
+    $this->params['isFav'] = $isFav;
 
     return $this->render('showPost', $this->params);
   }

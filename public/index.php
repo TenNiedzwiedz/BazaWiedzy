@@ -45,6 +45,8 @@ use app\controllers\PostsController;
   $app->router->get('/postlist', [PostsController::class, 'postList']);
   $app->router->post('/postlist', [PostsController::class, 'postList']);
 
+  $app->router->post('/addfav', [FavouritesController::class, 'addFavourite']);
+  $app->router->post('/removefav', [FavouritesController::class, 'removeFavourite']);
   $app->router->get('/favourites', [FavouritesController::class, 'showFavourites']);
 
   $app->router->get('/users', [UsersController::class, 'usersList']);
