@@ -57,10 +57,24 @@ class UsersController extends Controller
     foreach ($dbPostList as $dbPost) {
       $post = new Post();
       $post->loadDbObjectData($dbPost);
+
+      $post->content = str_replace("\n", "</br>", $post->content);
+
       $postList[] = $post;
 
-      $tagList[$post->id] = json_decode($dbPost->tags); //TODO Dorobić ograniczenie liczby tagów
+      $tags = json_decode($dbPost->tags);
+      if(count($tags) > 5)
+      {
+        $tagList[$post->id] = array_slice($tags, 0, 5);
+        $tagList[$post->id][5] = json_decode('{"value":"..."}');
+      } else {
+        $tagList[$post->id] = $tags;
+      }
+      
     }
+    $addedPosts = count(DbPost::findAll(['addedBy' => $this->currentUser->id]));
+
+    $this->params['addedPosts'] = $addedPosts;
     $this->params['postList'] = $postList;
     $this->params['tagList'] = $tagList;
 
