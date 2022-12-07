@@ -145,6 +145,12 @@ class PostsController extends Controller
 
     $this->post->content = str_replace("\n", "</br>", $this->post->content);
 
+    $verifiedDate = new \DateTime($this->post->verifiedDate);
+    $today = new \DateTime('now');
+    $verifiedDaysAgo = date_diff($verifiedDate, $today);
+    
+    $this->params['verifiedDaysAgo'] = $verifiedDaysAgo->format('%a');
+
     $isFav = (DbFavourite::findOne(['userID' => $this->currentUser->id, 'postID' => $dbPost->id])) ? true : false;
     $this->params['isFav'] = $isFav;
 

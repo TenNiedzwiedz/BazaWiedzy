@@ -24,6 +24,17 @@ use app\core\Application;
         <p class="card-text form-control">
           <?= $post->title ?>
         </p>
+        <?php if($verifiedDaysAgo > 360): ?>
+        <div class="alert alert-danger text-center m-5" role="alert">
+          <h6>Artykuł zweryfikowany ponad 12 miesięcy temu!</h6>
+          Treść artykułu może nie być aktualna. Sprawdź jego poprawność i zweryfikuj go.
+        </div>
+        <?php elseif($verifiedDaysAgo > 180): ?>
+        <div class="alert alert-warning text-center m-5" role="alert">
+          <h6>Artykuł zweryfikowany ponad 6 miesięcy temu!</h6>
+          Treść artykułu może nie być aktualna. Sprawdź jego poprawność i zweryfikuj go.
+        </div>
+        <?php endif; ?>
         <h5 class="card-title">Uwagi</h5>
         <p class="card-text form-control">
           <?= $post->remarks ?>
