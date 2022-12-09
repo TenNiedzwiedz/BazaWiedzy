@@ -21,8 +21,8 @@ class DbPost extends DbModel
   public bool $visible = true;
   public int $views = 0;
   public bool $verified = false;
-  public string $verifiedDate;
-  public int $verifiedBy;
+  public string $verifiedDate = '0000-00-00 00:00:00';
+  public int $verifiedBy = 0;
 
   public function loadObjectData(Model $model)
   {
@@ -47,11 +47,11 @@ class DbPost extends DbModel
 
   public function getDbFields()
   {
-    return [ 'title', 'remarks', 'content', 'tags', 'addedBy', 'addDate', 'views'];
+    return [ 'title', 'remarks', 'content', 'tags', 'addedBy', 'addDate', 'views', 'verified', 'verifiedDate', 'verifiedBy'];
   }
 
   public function getChangelogFields()
   {
-    return ['title', 'remarks', 'content', 'tags'];
+    return ['title', 'remarks', 'content', 'tags', 'verifiedDate'];
   }
 }
