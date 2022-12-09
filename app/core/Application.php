@@ -43,6 +43,7 @@
       try {
         echo $this->router->resolve();
       } catch (\Exception $e) {
+        $this->layout = 'guest';
         $this->response->setStatusCode($e->getCode());
         echo $this->view->renderView('_error', [
           'exception' => $e
