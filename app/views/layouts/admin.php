@@ -35,8 +35,10 @@
           <a class="navbar-brand link-warning" href="/"><i class="bi bi-rocket-takeoff-fill"></i>&nbsp Baza wiedzy</a>
         </div>
         <div class="col text-end">
-
           <div class="dropdown d-inline-flex align-items-center">
+            <form class="me-3" action="/search" method="get">
+              <input type="text" name="searchWords" class="form-control form-control-dark text-bg-dark" placeholder="Szukaj...">
+            </form>
             <span class="me-3"><?= $currentUser->getUsername() ?></span><a href="#" class="link-warning h4 m-0" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i></a>
             <ul class="dropdown-menu dropdown-menu-dark">
               <li><a class="dropdown-item" href="/myprofile">Mój profil</a></li>
