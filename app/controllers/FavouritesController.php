@@ -39,11 +39,11 @@ class FavouritesController extends Controller
                 $dbFavourite = new DbFavourite();
                 $dbFavourite->loadObjectData($favourite);
                 $dbFavourite->save();
-                return 'Dodano do Fav';
+                return json_encode(['type' => 'success', 'label' => 'Sukces', 'message' => 'Artykuł został dodany do ulubionych']);
             }
-            return 'fav już istnieje';
+            return json_encode(['type' => 'danger', 'label' => 'Wystąpił błąd', 'message' => 'Spróbuj ponownie później (error-duplicate)']);
         }
-        return 'brak id';
+        return json_encode(['type' => 'danger', 'label' => 'Wystąpił błąd', 'message' => 'Spróbuj ponownie później (error-body-val)']);
     }
 
     public function removeFavourite(Request $request)
@@ -59,12 +59,12 @@ class FavouritesController extends Controller
                 $dbFavourite->postID = '0';
                 if($dbFavourite->update(['id' => $dbFavourite->id]))
                 {
-                    return 'Usunieto z Fav';
+                    return json_encode(['type' => 'success', 'label' => 'Sukces', 'message' => 'Artykuł został usunięty z ulubionych']);
                 }
             }
-            return 'brak fav do usuniecia';
+            return json_encode(['type' => 'danger', 'label' => 'Wystąpił błąd', 'message' => 'Spróbuj ponownie później (error-not-found)']);
         }
-        return 'brak id';
+        return json_encode(['type' => 'danger', 'label' => 'Wystąpił błąd', 'message' => 'Spróbuj ponownie później (error-body-val)']);
     }
 
     public function showFavourites()
