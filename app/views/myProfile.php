@@ -38,6 +38,7 @@
       <div class="card-header h3 text-center">Ostatnio dodane wpisy</div>
       <div class="card-body">
         <?php
+        if(!empty($postList)) {
           foreach($postList as $post)
           {
             echo '<a href="/post?id='.$post->id.'"class="text-reset text-decoration-none"><h5 class="card-title">'.$post->title.'</h5></a>';
@@ -47,6 +48,9 @@
             }
             echo '<hr>';
           }
+        } else {
+          echo 'Brak postów do wyświetlenia';
+        }
         ?>
       </div>
     </div>

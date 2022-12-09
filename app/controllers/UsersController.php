@@ -74,9 +74,9 @@ class UsersController extends Controller
     }
     $addedPosts = count(DbPost::findAll(['addedBy' => $this->currentUser->id]));
 
-    $this->params['addedPosts'] = $addedPosts;
-    $this->params['postList'] = $postList;
-    $this->params['tagList'] = $tagList;
+    $this->params['addedPosts'] = $addedPosts ?? '0';
+    $this->params['postList'] = $postList ?? [];
+    $this->params['tagList'] = $tagList ?? [];
 
     return $this->render('myProfile', $this->params);
   }

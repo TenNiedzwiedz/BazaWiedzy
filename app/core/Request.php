@@ -76,7 +76,7 @@ class Request
 
     if($this->isGet()) {
       foreach ($_GET as $key => $value) {
-        $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+        $body[$key] = filter_input(INPUT_GET, $key);
       }
     }
 

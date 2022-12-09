@@ -40,12 +40,9 @@
 <script>
   var rows = document.getElementsByTagName('tr');
 
-  console.log('działa');
   console.log(rows);    
   for(var i=1; i < rows.length; i++) {
-    console.log('cokolwiek');
     var visible = rows[i].children[2].innerText;
-    console.log(visible);
     
     if(visible == '1') {
       rows[i].children[2].innerHTML = '<i class="bi bi-check-circle-fill text-success"></i>';

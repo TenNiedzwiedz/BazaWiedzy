@@ -42,8 +42,12 @@ use app\controllers\PostsController;
   $app->router->post('/editpost', [PostsController::class, 'editPost']);
   $app->router->get('/post', [PostsController::class, 'showPost']);
 
+  $app->router->post('/verifypost', [PostsController::class, 'verifyPost']);
+
   $app->router->get('/postlist', [PostsController::class, 'postList']);
   $app->router->post('/postlist', [PostsController::class, 'postList']);
+
+  $app->router->get('/search', [PostsController::class, 'searchPosts']);
 
   $app->router->post('/addfav', [FavouritesController::class, 'addFavourite']);
   $app->router->post('/removefav', [FavouritesController::class, 'removeFavourite']);

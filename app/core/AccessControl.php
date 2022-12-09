@@ -6,8 +6,8 @@ class AccessControl
 {
   public static array $accessRules = [
     'guest' => [ 'login'],
-    'user' => ['main', 'logout', 'myProfile', 'userSettings', 'changePassword', 'addPost', 'editPost', 'showPost', 'postList', 'postList', 'addFavourite', 'removeFavourite', 'showFavourites'],
-    'admin' => ['main', 'logout', 'myProfile', 'userSettings', 'changePassword', 'addTag', 'editTag', 'showTags', 'addPost', 'editPost', 'showPost', 'postList', 'addFavourite', 'removeFavourite', 'showFavourites', 'editUser', 'usersList', 'showChangelog']
+    'user' => ['main', 'logout', 'myProfile', 'userSettings', 'changePassword', 'addPost', 'editPost', 'showPost', 'verifyPost', 'postList', 'postList', 'searchPosts', 'addFavourite', 'removeFavourite', 'showFavourites', 'editUser', 'showChangelog'],
+    'admin' => ['main', 'logout', 'myProfile', 'userSettings', 'changePassword', 'addTag', 'editTag', 'showTags', 'addPost', 'editPost', 'showPost', 'verifyPost', 'postList', 'searchPosts', 'addFavourite', 'removeFavourite', 'showFavourites', 'editUser', 'usersList', 'showChangelog']
     ];
 
   /**
