@@ -46,8 +46,10 @@ use app\core\Application;
             foreach($postList as $post)
             {
               echo '<a href="/post?id='.$post->id.'"class="text-reset text-decoration-none"><h5 class="card-title">'.$post->title.'</h5></a>';
-              foreach($postTagList[$post->id] as $tag) {
-                echo '<span class="badge rounded-pill bg-primary me-1">'.$tag->value.'</span>';
+              if($postTagList[$post->id]) {
+                foreach($postTagList[$post->id] as $tag) {
+                  echo '<span class="badge rounded-pill bg-primary me-1">'.$tag->value.'</span>';
+                }
               }
               echo '<hr>';
             }
