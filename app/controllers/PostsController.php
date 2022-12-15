@@ -272,7 +272,10 @@ class PostsController extends Controller
     $body = $request->getBody();
 
     if(isset($body['searchWords']) && !empty($body['searchWords'])) {
-      $query['content'] = $body['searchWords'];
+      $query['titleAndContent'] = [ 
+        'title' => $body['searchWords'],
+        'content' => $body['searchWords']    
+      ];
     }
     if(isset($body['searchTags']) && !empty($body['searchTags'])) {
       $searchTagsList = json_decode($body['searchTags']);

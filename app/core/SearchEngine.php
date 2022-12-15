@@ -23,10 +23,27 @@ class SearchEngine
         {
             if($columnName === array_key_first($query))
             {
-                $sql .= " WHERE MATCH ($columnName) AGAINST (:$columnName IN BOOLEAN MODE)";
+                $sql .= " WHERE MATCH (";
             } else {
-                $sql .= " AND MATCH ($columnName) AGAINST (:$columnName IN BOOLEAN MODE)";
+                $sql .= " AND MATCH (";
             }
+
+            if(is_array($searchWords))
+            {
+                foreach($searchWords as $name => $search)
+                {
+                    if($name === array_key_last($searchWords))
+                    {
+                        $sql .= $name;
+                    } else {
+                        $sql .= $name.', ';
+                    }
+                }
+            } else {
+                $sql .= $columnName;
+            }
+
+            $sql .= ") AGAINST (:$columnName IN BOOLEAN MODE)";
         }
 
         $statement = self::prepare($sql);
@@ -34,7 +51,12 @@ class SearchEngine
 
         foreach($query as $columnName => $searchWords)
         {
-            $statement->bindValue(":$columnName", $searchWords);
+            if(is_array($searchWords))
+            {
+                $statement->bindValue(":$columnName", reset($searchWords));
+            } else {
+                $statement->bindValue(":$columnName", $searchWords);
+            }
         }
 
         $statement->execute();
