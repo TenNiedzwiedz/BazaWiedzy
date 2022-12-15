@@ -63,7 +63,7 @@ class UsersController extends Controller
       $postList[] = $post;
 
       $tags = json_decode($dbPost->tags);
-      if(count($tags) > 5)
+      if(is_array($tags) && count($tags) > 5)
       {
         $tagList[$post->id] = array_slice($tags, 0, 5);
         $tagList[$post->id][5] = json_decode('{"value":"..."}');

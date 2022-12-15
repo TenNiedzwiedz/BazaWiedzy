@@ -43,8 +43,10 @@
           {
             echo '<a href="/post?id='.$post->id.'"class="text-reset text-decoration-none"><h5 class="card-title">'.$post->title.'</h5></a>';
             echo '<p class="card-text post-body mb-1 ms-2"><em>'.$post->content.'</em></p>';
-            foreach($tagList[$post->id] as $tag) {
-              echo '<span class="badge rounded-pill bg-primary me-1">'.$tag->value.'</span>';
+            if ($tagList[$post->id]) {
+              foreach($tagList[$post->id] as $tag) {
+                echo '<span class="badge rounded-pill bg-primary me-1">'.$tag->value.'</span>';
+              }
             }
             echo '<hr>';
           }
